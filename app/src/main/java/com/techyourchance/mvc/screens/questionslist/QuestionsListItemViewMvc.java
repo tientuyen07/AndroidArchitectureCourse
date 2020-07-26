@@ -1,13 +1,9 @@
 package com.techyourchance.mvc.screens.questionslist;
 
 import com.techyourchance.mvc.questions.Question;
-import com.techyourchance.mvc.screens.common.ViewMvc;
+import com.techyourchance.mvc.screens.common.ObservableViewMvc;
 
-public interface QuestionsListItemViewMvc extends ViewMvc {
-    void registerListener(Listener listener);
-
-    void unregisterListener(Listener listener);
-
+public interface QuestionsListItemViewMvc extends ObservableViewMvc<QuestionsListItemViewMvc.Listener> {
     void bindQuestion(Question question);
 
     interface Listener {
