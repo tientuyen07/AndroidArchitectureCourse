@@ -21,8 +21,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class QuestionsListActivity extends BaseActivity implements
-        QuestionsListAdapter.OnQuestionClickListener, QuestionsListViewMvc.Listener {
+public class QuestionsListActivity extends BaseActivity implements QuestionsListViewMvc.Listener {
 
     private StackoverflowApi mStackoverflowApi;
     private QuestionsListViewMvc viewMvc;
