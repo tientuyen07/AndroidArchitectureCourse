@@ -32,14 +32,17 @@ public class QuestionsListAdapter extends ArrayAdapter<Question> {
         if (convertView == null) {
             convertView = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.layout_question_list_item, parent, false);
+            ViewHolder viewHolder = new ViewHolder();
+            viewHolder.mTxtView = convertView.findViewById(R.id.txt_title);
+            convertView.setTag(viewHolder);
         }
 
         final Question question = getItem(position);
 
         // bind the data to views
-        TextView txtTitle = convertView.findViewById(R.id.txt_title);
-        txtTitle.setText(question.getTitle());
-
+        ViewHolder viewHolder = (ViewHolder) convertView.getTag();
+        viewHolder.mTxtView.setText(question.getTitle());
+        
         // set listener
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,6 +52,10 @@ public class QuestionsListAdapter extends ArrayAdapter<Question> {
         });
 
         return convertView;
+    }
+
+    public static class ViewHolder {
+        private TextView mTxtView;
     }
 
     private void onQuestionClicked(Question question) {
