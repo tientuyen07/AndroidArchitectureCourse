@@ -1,12 +1,11 @@
 package com.techyourchance.mvc.screens.questionslist;
 
-import android.view.View;
-
 import com.techyourchance.mvc.questions.Question;
+import com.techyourchance.mvc.screens.common.ViewMvc;
 
 import java.util.List;
 
-public interface QuestionsListViewMvc {
+public interface QuestionsListViewMvc extends ViewMvc {
     interface Listener {
         void onQuestionClicked(Question question);
     }
@@ -14,8 +13,6 @@ public interface QuestionsListViewMvc {
     void registerListener(Listener listener);
 
     void unregisterListener(Listener listener);
-
-    View getRootView();
 
     void bindQuestions(List<Question> questions);
 }
