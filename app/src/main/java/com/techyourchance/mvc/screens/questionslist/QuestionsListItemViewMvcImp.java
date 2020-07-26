@@ -8,19 +8,20 @@ import android.widget.TextView;
 
 import com.techyourchance.mvc.R;
 import com.techyourchance.mvc.questions.Question;
+import com.techyourchance.mvc.screens.common.BaseViewMvc;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class QuestionsListItemViewMvcImp implements QuestionsListItemViewMvc {
-    private final View mRootView;
+public class QuestionsListItemViewMvcImp extends BaseViewMvc implements QuestionsListItemViewMvc {
     private final TextView mTxtView;
     private final List<Listener> mListeners = new ArrayList<>(1);
     private Question mQuestion;
 
     public QuestionsListItemViewMvcImp(LayoutInflater layoutInflater, @Nullable ViewGroup parent) {
-        mRootView = layoutInflater.inflate(R.layout.layout_question_list_item, parent, false);
+        setRootView(layoutInflater.inflate(R.layout.layout_question_list_item, parent, false));
         mTxtView = findViewById(R.id.txt_title);
+
         getRootView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -29,15 +30,6 @@ public class QuestionsListItemViewMvcImp implements QuestionsListItemViewMvc {
                 }
             }
         });
-    }
-
-    private <T extends View> T findViewById(int id) {
-        return getRootView().findViewById(id);
-    }
-
-    @Override
-    public View getRootView() {
-        return mRootView;
     }
 
     @Override
