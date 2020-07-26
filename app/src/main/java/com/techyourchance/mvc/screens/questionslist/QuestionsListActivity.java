@@ -18,8 +18,6 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class QuestionsListActivity extends BaseActivity implements QuestionsListViewMvc.Listener {
 
@@ -33,12 +31,8 @@ public class QuestionsListActivity extends BaseActivity implements QuestionsList
         viewMvc = new QuestionsListViewMvcImpl(LayoutInflater.from(this), null);
         viewMvc.registerListener(this);
 
-        mStackoverflowApi = new Retrofit.Builder()
-                .baseUrl(Constants.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
-                .create(StackoverflowApi.class);
-
+        mStackoverflowApi = getCompositionRoot().getStackoverflowApi();
+        
         setContentView(viewMvc.getRootView());
     }
 
