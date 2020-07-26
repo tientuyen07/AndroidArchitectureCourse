@@ -1,7 +1,6 @@
 package com.techyourchance.mvc.screens.questionslist;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.widget.Toast;
 
 import com.techyourchance.mvc.R;
@@ -28,11 +27,11 @@ public class QuestionsListActivity extends BaseActivity implements QuestionsList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        viewMvc = new QuestionsListViewMvcImpl(LayoutInflater.from(this), null);
+        viewMvc = getCompositionRoot().getViewMvcFactory().getQuestionsListViewMvc(null);
         viewMvc.registerListener(this);
 
         mStackoverflowApi = getCompositionRoot().getStackoverflowApi();
-        
+
         setContentView(viewMvc.getRootView());
     }
 
