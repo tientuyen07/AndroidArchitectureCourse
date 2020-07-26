@@ -22,7 +22,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class QuestionsListActivity extends BaseActivity implements
-        QuestionsListAdapter.OnQuestionClickListener {
+        QuestionsListAdapter.OnQuestionClickListener, QuestionsListViewMvc.Listener {
 
     private StackoverflowApi mStackoverflowApi;
     private QuestionsListViewMvc viewMvc;
@@ -32,6 +32,7 @@ public class QuestionsListActivity extends BaseActivity implements
         super.onCreate(savedInstanceState);
 
         viewMvc = new QuestionsListViewMvcImpl(LayoutInflater.from(this), null);
+        viewMvc.registerListener(this);
 
         mStackoverflowApi = new Retrofit.Builder()
                 .baseUrl(Constants.BASE_URL)
